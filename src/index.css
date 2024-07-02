@@ -1,0 +1,218 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: rgb(251, 228, 191);
+  color: black;
+}
+.cart-img {
+  width: 50px;
+  height: 50px;
+}
+
+.shoe-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.container div {
+  margin-top: 5px;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  height: 400px;
+  border: none;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  box-sizing: border-box;
+}
+.container .img {
+  width: 100%;
+  height: 170px;
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.name {
+  margin: 10px 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.price {
+  font-size: 1.1em;
+  color: #888;
+  margin: 10px 0;
+}
+
+.add-to-cart {
+  margin-top: 20px; /* Adjust margin to create space */
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+.add-to-cart:hover {
+  background-color: #45a049;
+}
+.cart-button {
+  background-color:  rgb(251, 228, 191);
+  border: none;
+}
+.cart-button:hover {
+  cursor: pointer;
+}
+.cart-count {
+  position: absolute;
+  top: 20px;
+  right: 53px;
+  font-weight: bold;
+}
+.checkout-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.cart-items {
+  border: 2px solid black;
+  margin-left: 140px;
+  margin-top: 80px;
+  margin-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  font-size: 22px;
+  font-weight: Bold;
+  background-color: rgb(251, 228, 191);
+  border: none;
+}
+.cart-amount {
+  border: 2px solid black;
+  margin-top: 80px;
+  margin-right: 30px;
+  background-color: rgb(251, 228, 191);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border: none;
+  max-height: 450px;
+}
+.summary {
+  font-weight: bold;
+  font-size: 22px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+.price {
+  font-weight: bold;
+  color: black
+}
+.subtotal {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tax {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shipping {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total-cost {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  display: block;
+  margin: 20px auto;
+  width: 200px;
+  border-radius: 50px;
+}
+.cart-shoes {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  margin-left: 140px;
+  margin-right: 50px;
+  margin-top: 20px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.img-shoes {
+  padding-left: 10px;
+}
+
+.info1 {
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.shoe-price {
+  font-weight: bold;
+  margin-top: 30px;
+}
+.shoe-brand {
+  font-weight: bold;
+  margin-top: 30px;
+}
+.shoe-quantity {
+  font-weight: bold;
+  margin-top: 30px;
+}
+.buttons {
+  margin-top: 40px;
+}
+.edit-btn, .remove-btn {
+  padding: 10px;
+  width: 150px;
+  font-size: 15px;
+  font-weight: bold;
+} 
+.edit-btn {
+  background-color:#45a049;
+  color: white;
+  border: none;
+}
+.remove-btn {
+  margin-left: 15px;
+  background-color: rgb(180, 2, 2);
+  color: white;
+  border: none;
+}
+
