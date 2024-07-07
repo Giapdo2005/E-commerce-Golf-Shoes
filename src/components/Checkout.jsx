@@ -13,6 +13,8 @@ const fetchCartItems = async () => {
 
 function Checkout({ cart, removeFromCart }){
   const [cartItems, setCartItems] = useState([]);
+  const [editMode, setEditMode] = useState(null);
+  const [editedQuantity, setEditedQuantity] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,46 @@ function Checkout({ cart, removeFromCart }){
       console.error("Error removing item from cart:", error);
     }
   }
+
+  const handleEditButton = (shoeId, currentQuantity) => {
+    setEditMode(shoeId);
+    setEditedQuantity(currentQuantity)
+  }
+
+
+  const handleQuantityChange = (e) => {
+    setEditedQuantity(e.target.value);
+  }
+
+  const handleSaveButton = async (shoeId) => {
+    try {
+      const updatedCartItemIndex = cartItems.findIndex(item => item.id === shoeId);
+
+      if (updatedCartItemIndex !== -1) {
+        // Create a copy of the item found at updatedCartItemIndex
+        const updatedCartItem = { ...cartItems[updatedCartItemIndex] };
+        updatedCartItem.quantity = editedQuantity; // Update the quantity locally first
+        console.log(`Updating quantity for item ${shoeId} to ${editedQuantity}`);
+  
+        // Update the cartItems state to reflect the change
+        const updatedCartItems = [...cartItems]; // Create a copy of cartItems
+        updatedCartItems[updatedCartItemIndex] = updatedCartItem; // Update the specific item
+  
+        // Set the updated cartItems state
+        setCartItems(updatedCartItems);
+  
+        // Send PUT request to update quantity in backend
+        await axios.put(`http://localhost:5000/api/cart/update/${shoeId}`, { quantity: editedQuantity });
+  
+        // Reset edit mode
+        setEditMode(null);
+      } else {
+        console.error(`Item with ID ${shoeId} not found in cart.`);
+      }
+    } catch (error) {
+      console.error("Error updating item quantity:", error);
+    }
+  };
 
   const calculateSubTotal = () => {
     return cart.reduce((total, shoe) => {
@@ -70,15 +112,30 @@ function Checkout({ cart, removeFromCart }){
                 Shoe Brand: {shoe.brand}
               </div>
               <div className="shoe-quantity">
-                Quantity: 1
+                Quantity: {editMode === shoe.id ? (
+                  <input 
+                    type="number" 
+                    value={editedQuantity} 
+                    onChange={handleQuantityChange} 
+                    min="1"
+                  />
+                ) : (
+                  shoe.quantity
+                )}
               </div>
               <div className='buttons'>
-                <button className='edit-btn'>
-                  Edit
-                </button>
-                <button className='remove-btn' onClick={() => handleRemoveFromCart(shoe.id)}>
-                  Remove
-                </button>
+                {editMode === shoe.id ? (
+                  <button className='save-btn' onClick={() => handleSaveButton(shoe.id)}>
+                    Save
+                  </button>
+                  ) : (
+                  <button className='edit-btn' onClick={() => handleEditButton(shoe.id, shoe.quantity)}>
+                    Edit
+                  </button>
+                  )}
+                  <button className='remove-btn' onClick={() => handleRemoveFromCart(shoe.id)}>
+                    Remove
+                  </button>
               </div>
             </div>
           </div>
