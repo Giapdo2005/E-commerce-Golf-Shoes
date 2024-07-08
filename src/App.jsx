@@ -23,14 +23,14 @@ function App() {
     const updatedCart = cart.filter((item) => item.id !== shoeId);
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  }
+  };
+
   useEffect(() => {
     console.log("Cart updated:", cart);
   }, [cart]);
 
-
   return (
-    <Router>
+    <Router basename='/E-commerce-Golf-Shoes/'>
       <div>
         <Navbar cart={cart}/>
         <Routes>
@@ -39,7 +39,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

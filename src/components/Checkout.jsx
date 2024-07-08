@@ -48,22 +48,17 @@ function Checkout({ cart, removeFromCart }){
       const updatedCartItemIndex = cartItems.findIndex(item => item.id === shoeId);
 
       if (updatedCartItemIndex !== -1) {
-        // Create a copy of the item found at updatedCartItemIndex
         const updatedCartItem = { ...cartItems[updatedCartItemIndex] };
-        updatedCartItem.quantity = editedQuantity; // Update the quantity locally first
+        updatedCartItem.quantity = editedQuantity; 
         console.log(`Updating quantity for item ${shoeId} to ${editedQuantity}`);
   
-        // Update the cartItems state to reflect the change
-        const updatedCartItems = [...cartItems]; // Create a copy of cartItems
-        updatedCartItems[updatedCartItemIndex] = updatedCartItem; // Update the specific item
+        const updatedCartItems = [...cartItems]; 
+        updatedCartItems[updatedCartItemIndex] = updatedCartItem; 
   
-        // Set the updated cartItems state
         setCartItems(updatedCartItems);
-  
-        // Send PUT request to update quantity in backend
+
         await axios.put(`http://localhost:5000/api/cart/update/${shoeId}`, { quantity: editedQuantity });
   
-        // Reset edit mode
         setEditMode(null);
       } else {
         console.error(`Item with ID ${shoeId} not found in cart.`);
@@ -98,8 +93,9 @@ function Checkout({ cart, removeFromCart }){
         </div>
         {cart.map((shoe, index) => (
           <div className='cart-shoes' key={index}>
+            {console.log(shoe.image)}
             <div className="img-shoes">
-              <img src={shoe.image} alt={shoe.name} />
+              <img src={`http://localhost:5173/E-commerce-Golf-Shoes${shoe.image.replace(/^\.\//, '/')}`} alt={shoe.name} />
             </div>
             <div className='shoes-info'>
               <div className='info1'>

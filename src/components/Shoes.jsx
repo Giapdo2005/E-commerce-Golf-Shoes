@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import shoes from "../shoeData";
+import shoes from "../shoeData.js";
 import axios from "axios";
 
 
